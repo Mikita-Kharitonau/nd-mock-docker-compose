@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  scheduler-mock-service:
+    image: scheduler-mock-service
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+
+  results-mock-service:
+    image: results-mock-service
+    ports:
+      - 8082:8082
+    depends_on:
+      - db
+
+
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: nd_mock_db
+      MYSQL_USER: mock
+      MYSQL_PASSWORD: mock
+      MYSQL_ROOT_PASSWORD: root
+
