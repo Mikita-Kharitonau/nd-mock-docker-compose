@@ -16,6 +16,13 @@ services:
     depends_on:
       - db
 
+  validation-service:
+    image: validation-service
+    ports:
+      - 8083:8083
+    network_mode: "host"
+    depends_on:
+      - db
 
   db:
     image: mysql
